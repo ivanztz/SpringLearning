@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="sender" class="component.MessageSender" autowire="constructor" />
+
+	<!-- Provider bean excluded from autowiring -->
+	<bean id="hwProvider" class="component.HelloWorldMessageProvider"
+		autowire-candidate="false" />
+
+	<!-- Provider bean primary for autowiring -->
+	<bean id="cwProvider" class="component.CustomMessageProvider"
+		primary="true">
+		<constructor-arg value="Hello from custom provider (XML configuration)" />
+
+		<!-- Setting property with SpEL -->
+		<property name="time" value="#{new java.util.Date()}"></property>
+	</bean>
+</beans>
