@@ -5,15 +5,13 @@
 
 	<bean id="sender" class="component.MessageSender" autowire="constructor" />
 
-	<bean id="messageReplacer"  class="component.GetMessageReplacer" scope="singleton"/>
-	
 	<!-- Provider bean excluded from autowiring -->
-	<bean id="hwProvider" class="component.HelloWorldMessageProvider" primary="true">
-		<replaced-method name="getMessage" replacer="messageReplacer"/>
-	</bean>
+	<bean id="hwProvider" class="component.HelloWorldMessageProvider"
+		autowire-candidate="false" init-method="init" />
 
 	<!-- Provider bean primary for autowiring -->
-	<bean id="cwProvider" class="component.CustomMessageProvider" autowire-candidate="false">
+	<bean id="cwProvider" class="component.CustomMessageProvider"
+		primary="true" init-method="init">
 		<constructor-arg value="Hello from custom provider (XML configuration)" />
 
 		<!-- Setting property with SpEL -->

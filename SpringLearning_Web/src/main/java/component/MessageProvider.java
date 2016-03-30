@@ -8,4 +8,6 @@ package component;
 public interface MessageProvider {
 
 	String getMessage();
+	
+	void init();
 }

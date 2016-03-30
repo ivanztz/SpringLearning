@@ -16,4 +16,9 @@ public class HelloWorldMessageProvider implements MessageProvider {
 		return "Hello World!!!";
 	}
 
+	@Override
+	public void init() {
+		System.out.println(this.getClass().getName() + "bean initialized");
+	}
+
 }

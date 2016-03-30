@@ -38,4 +38,9 @@ public class CustomMessageProvider implements MessageProvider {
 	public void setTime(Date time) {
 		this.time = time;
 	}
+
+	@Override
+	public void init() {
+		System.out.println(this.getClass().getName() + "bean initialized");
+	}
 }
